@@ -1,0 +1,36 @@
+body {
+  background-color: #1d7074;
+}
+.home_title {
+  color: white;
+  font-weight: bold !important;
+}
+.list_text {
+  color: white;
+  font-weight: bold !important;
+}
+.home_button {
+  text-transform: none !important;
+  padding-top: 17px !important;
+  padding-bottom: 17px !important;
+  font-size: 18px !important;
+  background-color: #00c90d !important;
+  font-weight: bold !important;
+  margin-right: 10px !important;
+  margin-top: 90px !important;
+  width: 200px !important;
+}
+.left_content {
+  margin-top: 110px;
+}
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+.main_img {
+  height: 450px;
+}
+.right_content_online {
+  display: flex;
+  justify-content: center;
+}
