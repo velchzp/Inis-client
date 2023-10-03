@@ -1,9 +1,31 @@
 import React from "react";
-import { Typography, Button, List, ListItem, Box, Icon } from "@mui/material";
+import {
+  Typography,
+  Button,
+  List,
+  ListItem,
+  Box,
+  Icon,
+  Stack,
+} from "@mui/material";
 import styles from "./Home.css";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsAuth, logout } from "../../redux/slices/auth";
+
 export const Home = () => {
+  const isAuth = useSelector(selectIsAuth);
+  const dispatch = useDispatch();
+
+  const onClickLogout = () => {
+    if (window.confirm("U want logout?")) {
+      dispatch(logout());
+      window.localStorage.removeItem("token");
+      window.location.reload();
+    }
+  };
+
   return (
     <Box>
       <div className="body">
@@ -43,10 +65,27 @@ export const Home = () => {
             {" "}
             Join lobby{" "}
           </Button>
-          <Button variant="contained" className="home_button" disableElevation>
-            {" "}
-            Create lobby{" "}
-          </Button>
+          {}
+          {isAuth ? (
+            <Button
+              variant="contained"
+              className="home_button"
+              disableElevation
+            >
+              {" "}
+              Create lobby{" "}
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              className="home_button"
+              disableElevation
+              disabled
+            >
+              {" "}
+              Create lobby{" "}
+            </Button>
+          )}
         </Box>
         <Box>
           <img
@@ -78,18 +117,22 @@ export const Home = () => {
           alignItems: "center",
         }}
       >
-        <Button
-          variant="text"
-          style={{
-            fontSize: 18,
-            color: "white",
-            textTransform: "none",
-            fontWeight: "bold",
-          }}
-        >
-          Settings
-        </Button>
-        <SettingsIcon style={{ height: 30 }} />
+        {isAuth ? (
+          <Button
+            variant="text"
+            onClick={onClickLogout}
+            style={{
+              fontSize: 18,
+              color: "white",
+              textTransform: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Logout
+          </Button>
+        ) : (
+          <Stack></Stack>
+        )}
       </Box>
     </Box>
   );
