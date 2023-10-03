@@ -12,8 +12,11 @@ import { Login } from "../Login";
 import LoginIcon from "@mui/icons-material/Login";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Header.css";
+import { useSelector } from "react-redux";
+import { selectIsAuth } from "../../redux/slices/auth";
 
 export const Header = () => {
+  const isAuth = useSelector(selectIsAuth);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleButtonClick = () => {
@@ -86,10 +89,18 @@ export const Header = () => {
               <SearchIcon style={{ fill: "white", fontSize: "30px" }} />
             </IconButton>
           </form>
-          <Button color="inherit" onClick={handleButtonClick}>
-            Login
-          </Button>
-          <LoginIcon className="loginimg" style={{ fontSize: "40px" }} />
+          {isAuth ? (
+            <Button color="inherit">My profile</Button>
+          ) : (
+            <Stack direction="row" alignItems="center">
+              {" "}
+              {/* Wrap the Button and LoginIcon in a Stack */}
+              <Button color="inherit" onClick={handleButtonClick}>
+                Login
+              </Button>
+              <LoginIcon className="loginimg" style={{ fontSize: "40px" }} />
+            </Stack>
+          )}
         </Stack>
         {isOpen && (
           <div className="overlay">
