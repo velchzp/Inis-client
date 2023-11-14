@@ -15,6 +15,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, logout } from "../../redux/slices/auth";
 
 export const Home = () => {
+  const handleButtonClick = () => {
+    window.location.href = "http://localhost:4444/game/";
+  };
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
@@ -61,7 +64,12 @@ export const Home = () => {
             </ListItem>
           </List>
 
-          <Button variant="contained" className="home_button" disableElevation>
+          <Button
+            variant="contained"
+            className="home_button"
+            disableElevation
+            onClick={handleButtonClick}
+          >
             {" "}
             Join lobby{" "}
           </Button>
