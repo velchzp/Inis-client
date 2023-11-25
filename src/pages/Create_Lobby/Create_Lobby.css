@@ -1,0 +1,30 @@
+.create_lobby_wrapper {
+  display: flex;
+  justify-content: center;
+}
+.create_lobby_parts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.players {
+  width: 600px;
+  height: 550px;
+  background-color: #5dc8cd;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.lobby_settings {
+  width: 1800px;
+  height: 550px;
+  background-color: #5dc8cd;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.chat {
+  width: 600px;
+  height: 550px;
+  background-color: #5dc8cd;
+  border-radius: 10px;
+}

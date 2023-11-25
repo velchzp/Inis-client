@@ -13,7 +13,7 @@ import Brightness1Icon from "@mui/icons-material/Brightness1";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, logout } from "../../redux/slices/auth";
-
+import { Link } from "react-router-dom";
 export const Home = () => {
   const handleButtonClick = () => {
     window.location.href = "http://localhost:4444/game/";
@@ -75,14 +75,16 @@ export const Home = () => {
           </Button>
           {}
           {isAuth ? (
-            <Button
-              variant="contained"
-              className="home_button"
-              disableElevation
-            >
-              {" "}
-              Create lobby{" "}
-            </Button>
+            <Link to={"/create_lobby"}>
+              <Button
+                variant="contained"
+                className="home_button"
+                disableElevation
+              >
+                {" "}
+                Create lobby{" "}
+              </Button>
+            </Link>
           ) : (
             <Button
               variant="contained"

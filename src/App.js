@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, fetchAuthMe } from "./redux/slices/auth";
 import { useEffect } from "react";
+import { Create_Lobby } from "./pages/Create_Lobby";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/create_lobby" element={<Create_Lobby />} />
         </Routes>
       </Container>
     </>
