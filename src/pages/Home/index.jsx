@@ -11,10 +11,23 @@ import {
 import styles from "./Home.css";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, logout } from "../../redux/slices/auth";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Login } from "../../components/Login";
+import { Create_lobby_button } from "../../components/Create_lobby_button";
+
 export const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCreateLobbyButtonClick = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   const handleButtonClick = () => {
     window.location.href = "http://localhost:4444/game/";
   };
@@ -25,7 +38,7 @@ export const Home = () => {
     if (window.confirm("U want logout?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
@@ -63,29 +76,31 @@ export const Home = () => {
               </Typography>
             </ListItem>
           </List>
-
-          <Button
-            variant="contained"
-            className="home_button"
-            disableElevation
-            onClick={handleButtonClick}
-          >
-            {" "}
-            Join lobby{" "}
-          </Button>
+          <Link to={"/lobby_list"}>
+            <Button
+              variant="contained"
+              className="home_button"
+              disableElevation
+              // onClick={handleButtonClick}
+            >
+              {" "}
+              Join lobby{" "}
+            </Button>
+          </Link>
           {}
           {isAuth ? (
-            <Link to={"/create_lobby"}>
-              <Button
-                variant="contained"
-                className="home_button"
-                disableElevation
-              >
-                {" "}
-                Create lobby{" "}
-              </Button>
-            </Link>
+            // <Link to={"/create_lobby"}>
+            <Button
+              variant="contained"
+              className="home_button"
+              disableElevation
+              onClick={handleCreateLobbyButtonClick}
+            >
+              {" "}
+              Create lobby{" "}
+            </Button>
           ) : (
+            // </Link>
             <Button
               variant="contained"
               className="home_button"
@@ -142,6 +157,24 @@ export const Home = () => {
           </Button>
         ) : (
           <Stack></Stack>
+        )}
+        {isOpen && (
+          <div className="overlay">
+            <div className="createlobby">
+              <Button
+                onClick={handleClose}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  color: "#FF7600",
+                }}
+              >
+                <CloseIcon />
+              </Button>
+              <Create_lobby_button></Create_lobby_button>
+            </div>
+          </div>
         )}
       </Box>
     </Box>

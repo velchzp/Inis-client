@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, fetchAuthMe } from "./redux/slices/auth";
 import { useEffect } from "react";
 import { Create_Lobby } from "./pages/Create_Lobby";
+import { LobbyList } from "./pages/Lobby_List";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create_lobby" element={<Create_Lobby />} />
+          <Route path="/lobby_list" element={<LobbyList />} />
         </Routes>
       </Container>
     </>

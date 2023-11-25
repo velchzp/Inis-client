@@ -14,6 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Header.css";
 import { useSelector } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -36,13 +37,18 @@ export const Header = () => {
           />
         </IconButton>
         <Stack direction={"row"} spacing={1} className="listitems">
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Home
-          </Button>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{
+                textTransform: "none",
+                color: "white", // Ensure the text color is inherited
+              }}
+            >
+              Home
+            </Button>
+          </Link>
           <Button
             color="inherit"
             className="button_text"

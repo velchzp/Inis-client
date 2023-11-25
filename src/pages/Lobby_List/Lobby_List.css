@@ -1,0 +1,36 @@
+.lobby_list_wrapper {
+  display: flex;
+  justify-content: center;
+}
+.lobby_list_parts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.lobby_list {
+  width: 1800px;
+  height: 550px;
+  background-color: #5dc8cd;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+.lobby_list_tittle {
+  color: white;
+  font-weight: bold !important;
+  margin-top: 10px !important;
+}
+.lobby_list_labels {
+  width: 800px;
+  background-color: #aee4e6;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.lobby_list_lobies {
+  display: flex;
+  flex-direction: column;
+}
