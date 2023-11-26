@@ -5,8 +5,18 @@ import { Typography, Input, Select, MenuItem, Button } from "@mui/material";
 import { useState } from "react";
 import { Lobby } from "../../components/Lobby";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { socket } from "../../socket";
 
 export const LobbyList = () => {
+  const [LobbyList, setLobbyList] = useState(null);
+  useEffect(() => {
+    socket.on("lobby-list", (lobbylist) => {
+      setLobbyList(lobbylist);
+      console.log(lobbylist);
+    });
+    socket.emit("request-lobby-list");
+  }, []);
   return (
     <div className="lobby_list_wrapper">
       <div className="lobby_list_parts">
@@ -33,11 +43,13 @@ export const LobbyList = () => {
             </Typography>
           </div>
           <div className="lobby_list_lobies">
-            <Link to={"/create_lobby"} style={{ textDecoration: "none" }}>
-              <Lobby></Lobby>
-            </Link>
-            <Lobby></Lobby>
-            <Lobby></Lobby>
+            {LobbyList ? (
+              LobbyList.slice(0, 4).map((lobby, index) => (
+                <Lobby key={index} {...lobby} />
+              ))
+            ) : (
+              <div>Waiting for lobies data...</div>
+            )}
           </div>
         </div>
         <div className="chat"></div>

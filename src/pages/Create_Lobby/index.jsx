@@ -2,11 +2,15 @@ import React from "react";
 import style from "./Create_Lobby.css";
 import { Player } from "../../components/Player";
 import { Typography, Input, Select, MenuItem, Button } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { socket } from "../../socket";
 
 export const Create_Lobby = () => {
   const [PlayersNumber, setPlayersNumber] = useState(2);
   const [gameSpeed, setGameSpeed] = useState("Medium");
+  const [LobbyInfo, setLobbyInfo] = useState(null);
+  const { id } = useParams();
 
   const handlePlayersNumChange = (event) => {
     setPlayersNumber(event.target.value);
@@ -14,6 +18,14 @@ export const Create_Lobby = () => {
   const handleGameSpeedChange = (event) => {
     setGameSpeed(event.target.value);
   };
+  useEffect(() => {
+    socket.on("lobby-info", (lobbyinfo) => {
+      setLobbyInfo(lobbyinfo);
+    });
+    socket.emit("lobby-info", {
+      id,
+    });
+  });
   return (
     <div className="create_lobby_wrapper">
       <div className="create_lobby_parts">

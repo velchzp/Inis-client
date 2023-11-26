@@ -8,14 +8,39 @@ import {
 } from "@mui/material";
 import styles from "./Create_lobby_button.css";
 import { Link } from "react-router-dom";
+import { socket } from "../../socket";
 
 export const Create_lobby_button = () => {
   const [isPrivate, setIsPrivate] = useState(false);
+  const [LobbyName, setLobbyName] = useState("");
+  const [Password, setPassword] = useState("");
 
   const handleCheckboxChange = (event) => {
     setIsPrivate(event.target.checked);
   };
+  const handleLobbyNameChange = (event) => {
+    setLobbyName(event.target.value);
+    console.log(LobbyName);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    console.log(Password);
+  };
 
+  const handleCreateLobbyButton = () => {
+    if (!isPrivate) {
+      socket.emit("create-lobby", {
+        lobbyName: LobbyName,
+        isPrivate: isPrivate,
+      });
+    } else {
+      socket.emit("create-lobby", {
+        lobbyName: LobbyName,
+        isPrivate: isPrivate,
+        password: Password,
+      });
+    }
+  };
   return (
     <div>
       <Typography
@@ -33,6 +58,7 @@ export const Create_lobby_button = () => {
         sx={{
           "& fieldset": { border: "none" },
         }}
+        onChange={handleLobbyNameChange}
       />
       <br />
       <Typography style={{ display: "inline-block" }}>Private?</Typography>
@@ -54,29 +80,30 @@ export const Create_lobby_button = () => {
         size="small"
         className="log_field"
         type="password"
-        disabled={!isPrivate} // Disable when not private
+        disabled={!isPrivate}
         sx={{
           "& fieldset": { border: "none" },
-          opacity: isPrivate ? 1 : 0.5, // Adjust opacity based on private state
+          opacity: isPrivate ? 1 : 0.5,
         }}
+        onChange={handlePasswordChange}
       />
       <br />
-      <Link to={"/create_lobby"}>
-        <Button
-          type="submit"
-          className="log_button"
-          variant="contained"
-          disableElevation
-          style={{
-            width: 250,
-            height: 20,
-            backgroundColor: "#004FAB",
-            padding: 5,
-          }}
-        >
-          Create Lobby
-        </Button>
-      </Link>
+      <Button
+        type="submit"
+        className="log_button"
+        variant="contained"
+        disableElevation
+        style={{
+          width: 250,
+          height: 20,
+          backgroundColor: "#004FAB",
+          padding: 5,
+        }}
+        onClick={handleCreateLobbyButton}
+      >
+        Create Lobby
+      </Button>
+
       <br />
     </div>
   );
