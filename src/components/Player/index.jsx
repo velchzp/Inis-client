@@ -3,7 +3,7 @@ import { Typography, Select, MenuItem } from "@mui/material";
 import style from "./Player.css";
 import { useState } from "react";
 
-export const Player = ({ ready }) => {
+export const Player = (player) => {
   const [color, setColor] = useState("blue");
 
   const handleColorChange = (event) => {
@@ -14,8 +14,8 @@ export const Player = ({ ready }) => {
     <div>
       <div className="Player_wrapper">
         <div className="username_stack">
-          <Typography className="username">Username1</Typography>
-          {ready ? (
+          <Typography className="username">{player.userName}</Typography>
+          {player.isReady ? (
             <Typography className="username" style={{ color: "orange" }}>
               Ready
             </Typography>

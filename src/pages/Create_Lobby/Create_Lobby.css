@@ -71,3 +71,14 @@
 .game_speed_text {
   margin-top: 10px !important;
 }
+.ready_button {
+  text-transform: none !important;
+  padding-top: 17px !important;
+  padding-bottom: 17px !important;
+  font-size: 18px !important;
+  background-color: #00c90d !important;
+  font-weight: bold !important;
+  margin-right: 10px !important;
+  margin-top: 10px !important;
+  width: 200px !important;
+}

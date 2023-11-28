@@ -1,38 +1,59 @@
 import React from "react";
 import style from "./Create_Lobby.css";
 import { Player } from "../../components/Player";
-import { Typography, Input, Select, MenuItem, Button } from "@mui/material";
+import { Typography, Select, MenuItem, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { socket } from "../../socket";
+import { useSelector } from "react-redux";
 
 export const Create_Lobby = () => {
+  const MeInfo = useSelector((state) => state.auth);
   const [PlayersNumber, setPlayersNumber] = useState(2);
   const [gameSpeed, setGameSpeed] = useState("Medium");
   const [LobbyInfo, setLobbyInfo] = useState(null);
   const { id } = useParams();
+  const [isRanked, setIsRanked] = useState(false);
+  const [GameId, setGameId] = useState(null);
 
+  console.log(MeInfo);
   const handlePlayersNumChange = (event) => {
     setPlayersNumber(event.target.value);
   };
   const handleGameSpeedChange = (event) => {
     setGameSpeed(event.target.value);
   };
+  const handleReadyButton = () => {
+    socket.emit("is-ready");
+  };
+  const handleCheckboxChange = (event) => {
+    setIsRanked(event.target.checked);
+  };
+  const handleStartGameButton = () => {
+    socket.emit("start-game");
+  };
   useEffect(() => {
-    socket.on("lobby-info", (lobbyinfo) => {
+    socket.on("lobby-updated", (lobbyinfo) => {
       setLobbyInfo(lobbyinfo);
     });
-    socket.emit("lobby-info", {
-      id,
+    socket.on("start-game", (gameinfo) => {
+      window.location.href = `http://localhost:4444/game/${gameinfo.gameId}`;
     });
-  });
+    socket.emit("lobby-info");
+  }, []);
+  console.log(LobbyInfo);
+
   return (
     <div className="create_lobby_wrapper">
       <div className="create_lobby_parts">
         <div className="players">
-          <Player ready={true}></Player>
-          <Player ready={false}></Player>
-          <Player ready={true}></Player>
+          {LobbyInfo && LobbyInfo.players ? (
+            LobbyInfo.players
+              .slice(0, 4)
+              .map((player, index) => <Player key={index} {...player} />)
+          ) : (
+            <div>Waiting for lobies data...</div>
+          )}
         </div>
         <div className="lobby_settings">
           <Typography variant="h3" className="lobby_settings_tittle">
@@ -40,14 +61,14 @@ export const Create_Lobby = () => {
           </Typography>
           <div className="lobby_name">
             <Typography className="lobby_name_text">
-              Lobby Name : lobby1
+              Lobby Name : {LobbyInfo && LobbyInfo.name}
             </Typography>
             <div style={{ display: "flex" }}>
               <Typography className="lobby_name_text">
                 Number of players:
               </Typography>
               <Select
-                value={PlayersNumber}
+                value={LobbyInfo && LobbyInfo.maxPlayers}
                 onChange={handlePlayersNumChange}
                 className="numplayers"
                 size="small"
@@ -63,14 +84,14 @@ export const Create_Lobby = () => {
               Game speed presets
             </Typography>
             <Select
-              value={gameSpeed}
+              value={LobbyInfo && LobbyInfo.gameSpeed}
               onChange={handleGameSpeedChange}
               className="gamespeed_select"
               size="small"
             >
-              <MenuItem value="Slow">Slow</MenuItem>
-              <MenuItem value="Medium">Medium</MenuItem>
-              <MenuItem value="Fast">Fast</MenuItem>
+              <MenuItem value="slow">Slow</MenuItem>
+              <MenuItem value="medium">Medium</MenuItem>
+              <MenuItem value="fast">Fast</MenuItem>
             </Select>
             <Typography className="game_speed_text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -78,10 +99,40 @@ export const Create_Lobby = () => {
               enim ad minim veniam.
             </Typography>
           </div>
-          <Button variant="contained" className="home_button" disableElevation>
+          <div className="ramked">
+            {/* <Typography style={{ display: "inline-block" }}>
+              Private?
+            </Typography>
+            <Checkbox
+              checked={isRanked}
+              onChange={handleCheckboxChange}
+              style={{ padding: 0 }}
+            /> */}
+          </div>
+          <Button
+            variant="contained"
+            className="ready_button"
+            disableElevation
+            onClick={handleReadyButton}
+          >
             {" "}
             Ready{" "}
           </Button>
+          {LobbyInfo &&
+          LobbyInfo.canStartGame &&
+          MeInfo.data.user._id == LobbyInfo.owner.userId ? (
+            <Button
+              variant="contained"
+              className="ready_button"
+              disableElevation
+              onClick={handleStartGameButton}
+            >
+              {" "}
+              StartGame{" "}
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="chat"></div>
       </div>

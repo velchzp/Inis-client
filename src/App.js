@@ -19,7 +19,10 @@ function App() {
   React.useEffect(() => {
     dispatch(fetchAuthMe());
 
-    socket.emit("authenticate", localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
+    if (token) {
+      socket.emit("authenticate", token);
+    }
 
     socket.on("lobby-created", (lobby) => {
       navigate(`/lobby/${lobby}`);
