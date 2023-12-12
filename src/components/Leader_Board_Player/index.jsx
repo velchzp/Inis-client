@@ -2,14 +2,14 @@ import React from "react";
 import { Typography } from "@mui/material";
 import style from "./Leader_Board_Player.css";
 
-export const LeaderBoardPlayer = (player) => {
+export const LeaderBoardPlayer = ({ player, index }) => {
   return (
     <div className="leader_board_player">
       <Typography
         style={{ color: "black", fontWeight: "bold" }}
         className="player_item"
       >
-        #1
+        #{index + 1}
       </Typography>
       <Typography
         style={{ color: "black", fontWeight: "bold" }}

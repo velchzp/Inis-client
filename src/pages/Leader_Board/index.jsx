@@ -43,11 +43,19 @@ export const LeaderBoard = () => {
             {leaderboard.data ? (
               leaderboard.data
                 .slice(0, 4)
-                .map((player, index) => (
-                  <LeaderBoardPlayer key={index} {...player} />
-                ))
+                .map((player, index) =>
+                  player.userName ? (
+                    <LeaderBoardPlayer
+                      key={index}
+                      player={player}
+                      index={index}
+                    />
+                  ) : (
+                    <div key={index}>Player data incomplete</div>
+                  )
+                )
             ) : (
-              <div>Waiting for lobies data...</div>
+              <div>Waiting for lobby data...</div>
             )}
           </div>
         </div>
