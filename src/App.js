@@ -19,7 +19,6 @@ function App() {
 
   React.useEffect(() => {
     dispatch(fetchAuthMe());
-
     const token = localStorage.getItem("token");
     if (token) {
       socket.emit("authenticate", token);

@@ -2,8 +2,17 @@ import React from "react";
 import style from "./Leader_Board.css";
 import { Typography } from "@mui/material";
 import { LeaderBoardPlayer } from "../../components/Leader_Board_Player";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLeaderBoard } from "../../redux/slices/leaderboard";
+import { useEffect } from "react";
 export const LeaderBoard = () => {
+  const leaderboard = useSelector((state) => state.leaderboard);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLeaderBoard());
+  }, [dispatch]);
+  console.log(leaderboard.data);
   return (
     <div className="leader_board_wrapper">
       <div className="leader_board_parts">
@@ -31,9 +40,15 @@ export const LeaderBoard = () => {
             </Typography>
           </div>
           <div className="leader_board_playeers">
-            <LeaderBoardPlayer />
-            <LeaderBoardPlayer />
-            <LeaderBoardPlayer />
+            {leaderboard.data ? (
+              leaderboard.data
+                .slice(0, 4)
+                .map((player, index) => (
+                  <LeaderBoardPlayer key={index} {...player} />
+                ))
+            ) : (
+              <div>Waiting for lobies data...</div>
+            )}
           </div>
         </div>
       </div>

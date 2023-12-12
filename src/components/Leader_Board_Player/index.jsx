@@ -2,22 +2,39 @@ import React from "react";
 import { Typography } from "@mui/material";
 import style from "./Leader_Board_Player.css";
 
-export const LeaderBoardPlayer = () => {
+export const LeaderBoardPlayer = (player) => {
   return (
     <div className="leader_board_player">
-      <Typography style={{ color: "black", fontWeight: "bold" }}>#1</Typography>
-      <Typography style={{ color: "black", fontWeight: "bold" }}>
+      <Typography
+        style={{ color: "black", fontWeight: "bold" }}
+        className="player_item"
+      >
+        #1
+      </Typography>
+      <Typography
+        style={{ color: "black", fontWeight: "bold" }}
+        className="player_item"
+      >
         {" "}
-        Player1
+        {player.userName}
       </Typography>
-      <Typography style={{ color: "black", fontWeight: "bold" }}>
-        322
+      <Typography
+        style={{ color: "black", fontWeight: "bold" }}
+        className="player_item"
+      >
+        {player.rating}
       </Typography>
-      <Typography style={{ color: "black", fontWeight: "bold" }}>
-        65%
+      <Typography
+        style={{ color: "black", fontWeight: "bold" }}
+        className="player_item"
+      >
+        {player.winrate}
       </Typography>
-      <Typography style={{ color: "black", fontWeight: "bold" }}>
-        200
+      <Typography
+        style={{ color: "black", fontWeight: "bold" }}
+        className="player_item"
+      >
+        {player.totalGames}
       </Typography>
     </div>
   );
