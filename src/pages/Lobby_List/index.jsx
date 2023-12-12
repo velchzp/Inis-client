@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Lobby_List.css";
 import { Player } from "../../components/Player";
-import { Typography, Input, Select, MenuItem, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Lobby } from "../../components/Lobby";
 import { Link } from "react-router-dom";
@@ -52,7 +52,7 @@ export const LobbyList = () => {
             )}
           </div>
         </div>
-        <div className="chat"></div>
+        <div className="lobby_list_chat"></div>
       </div>
     </div>
   );

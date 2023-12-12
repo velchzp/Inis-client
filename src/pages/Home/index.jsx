@@ -28,9 +28,7 @@ export const Home = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
-  const handleButtonClick = () => {
-    window.location.href = "http://localhost:4444/game/";
-  };
+
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
@@ -81,7 +79,6 @@ export const Home = () => {
               variant="contained"
               className="home_button"
               disableElevation
-              // onClick={handleButtonClick}
             >
               {" "}
               Join lobby{" "}
@@ -89,7 +86,6 @@ export const Home = () => {
           </Link>
           {}
           {isAuth ? (
-            // <Link to={"/create_lobby"}>
             <Button
               variant="contained"
               className="home_button"
@@ -100,7 +96,6 @@ export const Home = () => {
               Create lobby{" "}
             </Button>
           ) : (
-            // </Link>
             <Button
               variant="contained"
               className="home_button"

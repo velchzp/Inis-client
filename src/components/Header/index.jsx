@@ -49,13 +49,15 @@ export const Header = () => {
               Home
             </Button>
           </Link>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Leaderboard
-          </Button>
+          <Link to={"/leader_board"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              Leaderboard
+            </Button>
+          </Link>
           <Button
             color="inherit"
             className="button_text"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Lobby.css";
-import { Typography, Input, Select, MenuItem, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { socket } from "../../socket";
 
 export const Lobby = (lobbyinfo) => {
@@ -17,8 +17,6 @@ export const Lobby = (lobbyinfo) => {
         navigate(`/lobby/${lobbyinfo.id}`);
       }
     });
-
-    console.log("clicked");
   };
   return (
     <div

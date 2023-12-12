@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Create_Lobby } from "./pages/Create_Lobby";
 import { LobbyList } from "./pages/Lobby_List";
 import { socket } from "./socket";
+import { LeaderBoard } from "./pages/Leader_Board";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/lobby/:id" element={<Create_Lobby />} />
           <Route path="/lobby_list" element={<LobbyList />} />
+          <Route path="/leader_board" element={<LeaderBoard />} />
         </Routes>
       </Container>
     </>
