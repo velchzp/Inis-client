@@ -11,6 +11,7 @@ import { Create_Lobby } from "./pages/Create_Lobby";
 import { LobbyList } from "./pages/Lobby_List";
 import { socket } from "./socket";
 import { LeaderBoard } from "./pages/Leader_Board";
+import { FAQ } from "./pages/FAQ";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
           <Route path="/lobby/:id" element={<Create_Lobby />} />
           <Route path="/lobby_list" element={<LobbyList />} />
           <Route path="/leader_board" element={<LeaderBoard />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </Container>
     </>

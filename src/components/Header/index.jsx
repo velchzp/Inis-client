@@ -58,13 +58,15 @@ export const Header = () => {
               Leaderboard
             </Button>
           </Link>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            FAQ
-          </Button>
+          <Link to={"/faq"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              FAQ
+            </Button>
+          </Link>
           <Button
             color="inherit"
             className="button_text"

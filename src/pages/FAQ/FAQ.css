@@ -1,0 +1,10 @@
+.faq_container {
+  margin: 0px;
+}
+.faq_wrapper {
+  display: flex;
+  justify-content: center;
+}
+.question {
+  font-weight: bold !important;
+}
