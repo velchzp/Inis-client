@@ -12,6 +12,7 @@ import { LobbyList } from "./pages/Lobby_List";
 import { socket } from "./socket";
 import { LeaderBoard } from "./pages/Leader_Board";
 import { FAQ } from "./pages/FAQ";
+import { Rules } from "./pages/Rules";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/lobby_list" element={<LobbyList />} />
           <Route path="/leader_board" element={<LeaderBoard />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/rules" element={<Rules />} />
         </Routes>
       </Container>
     </>

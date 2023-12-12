@@ -67,13 +67,15 @@ export const Header = () => {
               FAQ
             </Button>
           </Link>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Rules
-          </Button>
+          <Link to={"/Rules"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              Rules
+            </Button>
+          </Link>
         </Stack>
 
         <Stack direction={"row"} className="logSear">
