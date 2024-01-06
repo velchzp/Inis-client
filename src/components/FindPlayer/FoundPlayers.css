@@ -1,0 +1,17 @@
+.player_list {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.player_list_buttons {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+}
+.player_list_nicknames {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+}

@@ -12,13 +12,31 @@ import { Login } from "../Login";
 import LoginIcon from "@mui/icons-material/Login";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Header.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { fetchFindPlayer } from "../../redux/slices/findplayer";
+import { useNavigate } from "react-router-dom";
+import { setNickname } from "../../redux/slices/findnickname";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      userName: "",
+    },
+    mode: "onChange",
+  });
+
+  const onSubmit = (values) => {
+    dispatch(setNickname(values));
+    navigate("/find_player");
+  };
 
   const handleButtonClick = () => {
     setIsOpen(true);
@@ -79,8 +97,9 @@ export const Header = () => {
         </Stack>
 
         <Stack direction={"row"} className="logSear">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
+              {...register("userName")}
               label="Find player"
               variant="outlined"
               size="small"
@@ -102,7 +121,11 @@ export const Header = () => {
             </IconButton>
           </form>
           {isAuth ? (
-            <Button color="inherit">My profile</Button>
+            <Link to={"/my_profile"} style={{ textDecoration: "none" }}>
+              <Button style={{ textTransform: "none", color: "white" }}>
+                My profile
+              </Button>
+            </Link>
           ) : (
             <Stack direction="row" alignItems="center">
               {" "}

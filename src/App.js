@@ -13,6 +13,8 @@ import { socket } from "./socket";
 import { LeaderBoard } from "./pages/Leader_Board";
 import { FAQ } from "./pages/FAQ";
 import { Rules } from "./pages/Rules";
+import { Profile } from "./pages/Profile";
+import { FindPlayerList } from "./pages/FindPlayerList";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,8 @@ function App() {
           <Route path="/leader_board" element={<LeaderBoard />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/rules" element={<Rules />} />
+          <Route path="/my_profile" element={<Profile />} />
+          <Route path="/find_player" element={<FindPlayerList />} />
         </Routes>
       </Container>
     </>
