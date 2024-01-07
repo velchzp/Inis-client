@@ -16,9 +16,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { fetchFindPlayer } from "../../redux/slices/findplayer";
+import { fetchFindPlayer } from "../../redux/slices/searchplayer";
 import { useNavigate } from "react-router-dom";
-import { setNickname } from "../../redux/slices/findnickname";
+import { setNickname } from "../../redux/slices/searchnickname";
 
 export const Header = () => {
   const dispatch = useDispatch();

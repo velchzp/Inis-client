@@ -4,7 +4,10 @@ import axios from "../../axios";
 export const fetchFindPlayer = createAsyncThunk(
   "/find_player",
   async (params) => {
-    const { data } = await axios.get(`/users/search/${params}`, params);
+    const { data } = await axios.get(
+      `http://localhost:4444/users/${params}`,
+      params
+    );
     return data;
   }
 );

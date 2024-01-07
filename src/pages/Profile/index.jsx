@@ -9,8 +9,10 @@ import { FriendList } from "../../components/Friend_list";
 
 export const Profile = () => {
   const MeInfo = useSelector((state) => state.auth);
+  const FindPlayer = useSelector((state) => state.findplayer);
   const [activeComponent, setActiveComponent] = useState("Overview");
   console.log(MeInfo?.data?.user);
+  console.log("FindPlayer", FindPlayer);
   const handleItemClick = (componentName) => {
     setActiveComponent(componentName);
   };
@@ -83,6 +85,7 @@ export const Profile = () => {
                 </Typography>
               </ListItemText>
             </ListItemButton>
+
             <ListItemButton
               component="a"
               href="#simple-list"

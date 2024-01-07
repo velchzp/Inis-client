@@ -14,7 +14,7 @@ import { LeaderBoard } from "./pages/Leader_Board";
 import { FAQ } from "./pages/FAQ";
 import { Rules } from "./pages/Rules";
 import { Profile } from "./pages/Profile";
-import { FindPlayerList } from "./pages/FindPlayerList";
+import { FindPlayerList } from "./pages/SearchPlayerList";
 
 function App() {
   const dispatch = useDispatch();
