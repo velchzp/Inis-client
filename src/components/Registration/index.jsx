@@ -111,21 +111,6 @@ export const Registration = () => {
             {" "}
             Already have an account?
           </Button>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ flexGrow: 1 }}>
-              <hr
-                style={{ borderTop: "1px solid white", marginRight: "10px" }}
-              />
-            </div>
-            <span style={{ color: "white", fontWeight: "bold" }}>
-              or login with
-            </span>
-            <div style={{ flexGrow: 1 }}>
-              <hr
-                style={{ borderTop: "1px solid white", marginLeft: "10px" }}
-              />
-            </div>
-          </div>
         </form>
       )}
     </div>
