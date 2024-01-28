@@ -1,0 +1,26 @@
+.player_list {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+.player_list_buttons {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+}
+.player_list_nicknames {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+}
+.Admin_buttons {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}

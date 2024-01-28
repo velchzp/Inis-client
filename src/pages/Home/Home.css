@@ -28,9 +28,44 @@ body {
   justify-content: space-between;
 }
 .main_img {
-  height: 450px;
+  height: 500px;
 }
 .right_content_online {
   display: flex;
   justify-content: center;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  backdrop-filter: blur(8px);
+  z-index: 999;
+}
+
+.createlobby {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 40%;
+  background-color: #01939a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  animation-duration: 1s;
+  animation-name: reg_anim;
+}
+@keyframes reg_anim {
+  from {
+    top: 0%;
+  }
+  to {
+    top: 45%;
+  }
 }

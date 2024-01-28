@@ -11,10 +11,24 @@ import {
 import styles from "./Home.css";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth, logout } from "../../redux/slices/auth";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Login } from "../../components/Login";
+import { Create_lobby_button } from "../../components/Create_lobby_button";
 
 export const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCreateLobbyButtonClick = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
@@ -22,7 +36,7 @@ export const Home = () => {
     if (window.confirm("U want logout?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
@@ -60,17 +74,23 @@ export const Home = () => {
               </Typography>
             </ListItem>
           </List>
-
-          <Button variant="contained" className="home_button" disableElevation>
-            {" "}
-            Join lobby{" "}
-          </Button>
+          <Link to={"/lobby_list"}>
+            <Button
+              variant="contained"
+              className="home_button"
+              disableElevation
+            >
+              {" "}
+              Join lobby{" "}
+            </Button>
+          </Link>
           {}
           {isAuth ? (
             <Button
               variant="contained"
               className="home_button"
               disableElevation
+              onClick={handleCreateLobbyButtonClick}
             >
               {" "}
               Create lobby{" "}
@@ -89,23 +109,12 @@ export const Home = () => {
         </Box>
         <Box>
           <img
-            src={process.env.PUBLIC_URL + "/main_image.png"}
+            src={process.env.PUBLIC_URL + "/cards_collage.png"}
             alt="Logo"
             className="main_img"
           />
           <br />
-          <Box className="right_content_online" alignItems="center">
-            <Brightness1Icon style={{ color: "#00c90d", height: 15 }} />
-            <Typography
-              style={{ fontWeight: "bold", marginRight: 8, color: "white" }}
-            >
-              0 online
-            </Typography>
-            <Typography style={{ fontWeight: "bold", color: "white" }}>
-              0 lobbies
-            </Typography>
           </Box>
-        </Box>
       </div>
       <Box
         className="settings"
@@ -132,6 +141,24 @@ export const Home = () => {
           </Button>
         ) : (
           <Stack></Stack>
+        )}
+        {isOpen && (
+          <div className="overlay">
+            <div className="createlobby">
+              <Button
+                onClick={handleClose}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  color: "#FF7600",
+                }}
+              >
+                <CloseIcon />
+              </Button>
+              <Create_lobby_button></Create_lobby_button>
+            </div>
+          </div>
         )}
       </Box>
     </Box>

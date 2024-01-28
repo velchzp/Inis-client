@@ -1,0 +1,19 @@
+.friend_list {
+  display: flex;
+  flex-direction: row;
+  width: 270px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+.friend_list_buttons {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}
+.friend_list_nicknames {
+  display: flex;
+  flex-direction: row;
+  width: 70px;
+}

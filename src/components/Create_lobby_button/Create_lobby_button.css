@@ -1,0 +1,19 @@
+.Lobby_name_field {
+  border: 0px;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 5px !important;
+}
+.Lobby_name_field input {
+  padding: 0px;
+  height: 20px;
+  width: 250px;
+}
+
+.signup_button {
+  color: #ff7600 !important;
+  padding: 0px !important;
+  font-weight: bold;
+  width: 100%;
+  justify-content: flex-end !important;
+}

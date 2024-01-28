@@ -1,0 +1,84 @@
+.create_lobby_wrapper {
+  display: flex;
+  justify-content: center;
+}
+.create_lobby_parts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.players {
+  width: 600px;
+  height: 550px;
+  background-color: #5dc8cd;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.lobby_settings {
+  width: 1800px;
+  height: 550px;
+  background-color: #5dc8cd;
+  margin-right: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chat {
+  width: 600px;
+  height: 550px;
+  background-color: #5dc8cd;
+  border-radius: 10px;
+}
+.lobby_settings_tittle {
+  color: white;
+  font-weight: bold !important;
+  margin-top: 10px !important;
+}
+.lobby_name {
+  display: flex;
+  flex-direction: row;
+  width: 550px;
+  justify-content: space-around;
+  margin-top: 20px !important;
+  background-color: #aee4e6;
+  padding: 20px;
+  border-radius: 10px;
+}
+.lobby_name_text {
+  color: black;
+  font-size: 20px !important;
+  padding-top: 4px;
+  padding-right: 4px;
+}
+.game_speed {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 300px;
+  background-color: #aee4e6;
+  align-items: center;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.game_speed_tittle {
+  color: black;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  margin-bottom: 10px !important;
+}
+.game_speed_text {
+  margin-top: 10px !important;
+}
+.ready_button {
+  text-transform: none !important;
+  padding-top: 17px !important;
+  padding-bottom: 17px !important;
+  font-size: 18px !important;
+  background-color: #00c90d !important;
+  font-weight: bold !important;
+  margin-right: 10px !important;
+  margin-top: 10px !important;
+  width: 200px !important;
+}

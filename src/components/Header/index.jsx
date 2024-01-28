@@ -12,12 +12,31 @@ import { Login } from "../Login";
 import LoginIcon from "@mui/icons-material/Login";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Header.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { fetchFindPlayer } from "../../redux/slices/searchplayer";
+import { useNavigate } from "react-router-dom";
+import { setNickname } from "../../redux/slices/searchnickname";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      userName: "",
+    },
+    mode: "onChange",
+  });
+
+  const onSubmit = (values) => {
+    dispatch(setNickname(values));
+    navigate("/find_player");
+  };
 
   const handleButtonClick = () => {
     setIsOpen(true);
@@ -36,39 +55,51 @@ export const Header = () => {
           />
         </IconButton>
         <Stack direction={"row"} spacing={1} className="listitems">
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Home
-          </Button>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Leaderboard
-          </Button>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            FAQ
-          </Button>
-          <Button
-            color="inherit"
-            className="button_text"
-            style={{ textTransform: "none" }}
-          >
-            Rules
-          </Button>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{
+                textTransform: "none",
+                color: "white", // Ensure the text color is inherited
+              }}
+            >
+              Home
+            </Button>
+          </Link>
+          <Link to={"/leader_board"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              Leaderboard
+            </Button>
+          </Link>
+          <Link to={"/faq"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              FAQ
+            </Button>
+          </Link>
+          <Link to={"/Rules"} style={{ textDecoration: "none" }}>
+            <Button
+              color="inherit"
+              className="button_text"
+              style={{ textTransform: "none", color: "white" }}
+            >
+              Rules
+            </Button>
+          </Link>
         </Stack>
 
         <Stack direction={"row"} className="logSear">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
+              {...register("userName")}
               label="Find player"
               variant="outlined"
               size="small"
@@ -90,7 +121,11 @@ export const Header = () => {
             </IconButton>
           </form>
           {isAuth ? (
-            <Button color="inherit">My profile</Button>
+            <Link to={"/my_profile"} style={{ textDecoration: "none" }}>
+              <Button style={{ textTransform: "none", color: "white" }}>
+                My profile
+              </Button>
+            </Link>
           ) : (
             <Stack direction="row" alignItems="center">
               {" "}

@@ -1,0 +1,23 @@
+.Player_wrapper {
+  width: 210px;
+  height: 80px;
+  margin: 0px;
+  background-color: #aee4e6;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+}
+.username {
+  margin-top: 5px !important;
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+  margin-left: 5px !important;
+}
+.username_stack {
+  display: flex;
+  flex-direction: row;
+  width: 205px;
+  justify-content: space-between;
+}
