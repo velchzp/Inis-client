@@ -7,9 +7,13 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchFindPlayer } from "../../redux/slices/findplayer.js";
+import { fetchSearchPlayer } from "../../redux/slices/searchplayer.js";
 
 export const FoundPlayers = (player) => {
+  const dispatch = useDispatch();
   const MeInfo = useSelector((state) => state.auth);
+  const SearchPlayer = useSelector((state) => state.findplayer);
+  const navigate = useNavigate();
   console.log(player._id);
   const handleAddFrienButton = () => {
     axios.post(`users/add/${player._id}`);
@@ -23,10 +27,15 @@ export const FoundPlayers = (player) => {
     axios.patch(`/users/ban/${player._id}`);
     console.log("added");
   };
+  const handleProfileButton = () => {
+    dispatch(fetchFindPlayer(player._id));
+    console.log(SearchPlayer);
+    navigate(`/another_player_profile`);
+  };
   console.log(MeInfo);
 
   return (
-    <div style={{ cursor: "pointer", display: "flex" }}>
+    <div style={{ display: "flex" }}>
       <div className="findplayer_wrapper">
         <div className="player_list">
           <div className="player_list_nicknames">
@@ -42,20 +51,11 @@ export const FoundPlayers = (player) => {
                 marginTop: 3,
                 marginLeft: 10,
               }}
+              onClick={handleProfileButton}
             >
               <Typography style={{ fontSize: 12 }}>Profile</Typography>
             </Button>
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: "#FF7600",
-                height: 20,
-                marginTop: 3,
-                marginLeft: 10,
-              }}
-            >
-              <Typography style={{ fontSize: 12 }}>Chat</Typography>
-            </Button>
+
             <Button
               variant="contained"
               style={{

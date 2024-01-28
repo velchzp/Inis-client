@@ -1,39 +1,35 @@
 import React, { useState } from "react";
 import { TextField, Typography, Button, Checkbox } from "@mui/material";
-import styles from "./Create_lobby_button.css";
+
 import { Link } from "react-router-dom";
 import { socket } from "../../socket";
+import axios from "../../axios.js";
 
-export const Create_lobby_button = () => {
-  const [isPrivate, setIsPrivate] = useState(false);
-  const [LobbyName, setLobbyName] = useState("");
+export const Change_password_button = () => {
+  const [NewPassword, setNewPassword] = useState("");
   const [Password, setPassword] = useState("");
 
-  const handleCheckboxChange = (event) => {
-    setIsPrivate(event.target.checked);
-  };
-  const handleLobbyNameChange = (event) => {
-    setLobbyName(event.target.value);
-   
+  const handleNewPasswordChange = (event) => {
+    setNewPassword(event.target.value);
   };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    
   };
 
-  const handleCreateLobbyButton = () => {
-    if (!isPrivate) {
-      socket.emit("create-lobby", {
-        lobbyName: LobbyName,
-        isPrivate: isPrivate,
-      });
-    } else {
-      socket.emit("create-lobby", {
-        lobbyName: LobbyName,
-        isPrivate: isPrivate,
+  const handleChangePasswordButton = () => {
+   
+    axios
+      .patch("http://localhost:4444/users/me/pass", {
         password: Password,
+        newPassword: NewPassword,
+      })
+      .then((response) => {
+        console.log("User updated successfully:", response.data);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
       });
-    }
   };
   return (
     <div>
@@ -41,10 +37,10 @@ export const Create_lobby_button = () => {
         variant="h6"
         style={{ textAlign: "center", fontWeight: "bold", color: "white" }}
       >
-        Create Lobby
+        Change password
       </Typography>
 
-      <Typography>Lobby Name</Typography>
+      <Typography>Password</Typography>
       <TextField
         variant="outlined"
         size="small"
@@ -52,21 +48,12 @@ export const Create_lobby_button = () => {
         sx={{
           "& fieldset": { border: "none" },
         }}
-        onChange={handleLobbyNameChange}
+        onChange={handlePasswordChange}
       />
       <br />
-      <Typography style={{ display: "inline-block" }}>Private?</Typography>
-      <Checkbox
-        checked={isPrivate}
-        onChange={handleCheckboxChange}
-        style={{ padding: 0 }}
-      />
 
-      <Typography
-        className="log_text"
-        style={{ color: isPrivate ? "initial" : "gray" }}
-      >
-        Password
+      <Typography className="log_text" style={{}}>
+        New Password
       </Typography>
 
       <TextField
@@ -74,12 +61,10 @@ export const Create_lobby_button = () => {
         size="small"
         className="log_field"
         type="password"
-        disabled={!isPrivate}
         sx={{
           "& fieldset": { border: "none" },
-          opacity: isPrivate ? 1 : 0.5,
         }}
-        onChange={handlePasswordChange}
+        onChange={handleNewPasswordChange}
       />
       <br />
       <Button
@@ -93,9 +78,9 @@ export const Create_lobby_button = () => {
           backgroundColor: "#004FAB",
           padding: 5,
         }}
-        onClick={handleCreateLobbyButton}
+        onClick={handleChangePasswordButton}
       >
-        Create Lobby
+        Change Password
       </Button>
 
       <br />

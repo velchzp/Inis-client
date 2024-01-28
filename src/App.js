@@ -15,6 +15,7 @@ import { FAQ } from "./pages/FAQ";
 import { Rules } from "./pages/Rules";
 import { Profile } from "./pages/Profile";
 import { FindPlayerList } from "./pages/SearchPlayerList";
+import { Another_player_profile } from "./pages/Another_player_profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ function App() {
           <Route path="/rules" element={<Rules />} />
           <Route path="/my_profile" element={<Profile />} />
           <Route path="/find_player" element={<FindPlayerList />} />
+          <Route
+            path="/another_player_profile"
+            element={<Another_player_profile />}
+          />
         </Routes>
       </Container>
     </>
