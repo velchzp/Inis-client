@@ -8,7 +8,7 @@ export const Lobby = (lobbyinfo) => {
   const navigate = useNavigate();
   const [IsJoined, setIsJoined] = useState(false);
   const handleLobbyClick = () => {
-    console.log(lobbyinfo);
+ 
     socket.emit("join-lobby", {
       lobbyId: lobbyinfo.id,
     });

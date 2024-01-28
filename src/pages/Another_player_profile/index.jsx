@@ -11,7 +11,7 @@ export const Another_player_profile = () => {
   const FindPlayer = useSelector((state) => state.findplayer);
   const [activeComponent, setActiveComponent] = useState("Overview");
 
-  console.log("FindPlayer", FindPlayer);
+  
   const handleItemClick = (componentName) => {
     setActiveComponent(componentName);
   };

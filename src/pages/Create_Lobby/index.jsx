@@ -16,7 +16,7 @@ export const Create_Lobby = () => {
   const [isRanked, setIsRanked] = useState(false);
   const [GameId, setGameId] = useState(null);
 
-  console.log(MeInfo);
+ 
   const handlePlayersNumChange = (event) => {
     setPlayersNumber(event.target.value);
   };

@@ -12,7 +12,7 @@ export const LeaderBoard = () => {
   useEffect(() => {
     dispatch(fetchLeaderBoard());
   }, [dispatch]);
-  console.log(leaderboard.data);
+
   return (
     <div className="leader_board_wrapper">
       <div className="leader_board_parts">

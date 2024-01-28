@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { FriendNickname } from "../FriendNickname";
 export const FriendList = () => {
   const MeInfo = useSelector((state) => state.auth);
-  console.log(MeInfo?.data?.user?.friends);
+  
   return (
     <div className="friendlist_wrapper">
       <div

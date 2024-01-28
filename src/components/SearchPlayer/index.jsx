@@ -14,25 +14,25 @@ export const FoundPlayers = (player) => {
   const MeInfo = useSelector((state) => state.auth);
   const SearchPlayer = useSelector((state) => state.findplayer);
   const navigate = useNavigate();
-  console.log(player._id);
+  
   const handleAddFrienButton = () => {
     axios.post(`users/add/${player._id}`);
-    console.log("added");
+ 
   };
   const handleAddAdminClick = () => {
     axios.patch(`/users/giveAdmin/${player._id}`);
-    console.log("added admin");
+
   };
   const handleBanClick = () => {
     axios.patch(`/users/ban/${player._id}`);
-    console.log("added");
+  
   };
   const handleProfileButton = () => {
     dispatch(fetchFindPlayer(player._id));
-    console.log(SearchPlayer);
+   
     navigate(`/another_player_profile`);
   };
-  console.log(MeInfo);
+  
 
   return (
     <div style={{ display: "flex" }}>

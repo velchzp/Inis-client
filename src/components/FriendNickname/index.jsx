@@ -5,10 +5,10 @@ import "./FriendNickname.css";
 import axios from "../../axios.js";
 
 export const FriendNickname = (player) => {
-  console.log();
+ 
   const handleRemoveButton = () => {
     axios.delete(`users/add/${player.id}`);
-    console.log(player.id, "deleted");
+    
   };
   return (
     <div>

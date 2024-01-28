@@ -5,7 +5,7 @@ import style from "./History.css";
 
 export const History = () => {
   const MeInfo = useSelector((state) => state.auth);
-  console.log("History", MeInfo?.data?.games);
+ 
   const formatCreatedAt = (createdAtString) => {
     const createdAtDate = new Date(createdAtString);
 

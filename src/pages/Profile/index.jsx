@@ -12,8 +12,7 @@ export const Profile = () => {
   const MeInfo = useSelector((state) => state.auth);
   const FindPlayer = useSelector((state) => state.findplayer);
   const [activeComponent, setActiveComponent] = useState("Overview");
-  console.log(MeInfo);
-  console.log("FindPlayer", FindPlayer);
+
   const handleItemClick = (componentName) => {
     setActiveComponent(componentName);
   };
