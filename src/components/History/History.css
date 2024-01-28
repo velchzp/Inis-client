@@ -1,0 +1,12 @@
+.history {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  margin-top: 10px;
+  border-bottom: 1px solid black;
+}
+.history_text {
+  width: 100px;
+  text-align: center;
+  font-weight: bold !important;
+}

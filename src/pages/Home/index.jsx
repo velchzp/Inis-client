@@ -109,23 +109,12 @@ export const Home = () => {
         </Box>
         <Box>
           <img
-            src={process.env.PUBLIC_URL + "/main_image.png"}
+            src={process.env.PUBLIC_URL + "/cards_collage.png"}
             alt="Logo"
             className="main_img"
           />
           <br />
-          <Box className="right_content_online" alignItems="center">
-            <Brightness1Icon style={{ color: "#00c90d", height: 15 }} />
-            <Typography
-              style={{ fontWeight: "bold", marginRight: 8, color: "white" }}
-            >
-              0 online
-            </Typography>
-            <Typography style={{ fontWeight: "bold", color: "white" }}>
-              0 lobbies
-            </Typography>
           </Box>
-        </Box>
       </div>
       <Box
         className="settings"

@@ -41,7 +41,6 @@ export const Create_Lobby = () => {
     });
     socket.emit("lobby-info");
   }, []);
-  console.log(LobbyInfo);
 
   return (
     <div className="create_lobby_wrapper">

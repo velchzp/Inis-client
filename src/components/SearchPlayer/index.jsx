@@ -4,27 +4,29 @@ import Person2Icon from "@mui/icons-material/Person2";
 import style from "./FoundPlayers.css";
 import axios from "../../axios.js";
 import { useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchFindPlayer } from "../../redux/slices/findplayer.js";
 
 export const FoundPlayers = (player) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const MeInfo = useSelector((state) => state.auth);
   console.log(player._id);
   const handleAddFrienButton = () => {
     axios.post(`users/add/${player._id}`);
     console.log("added");
   };
-  const handlePlayerClick = (_id) => {
-    dispatch(fetchFindPlayer(_id));
-    navigate("/my_profile");
+  const handleAddAdminClick = () => {
+    axios.patch(`/users/giveAdmin/${player._id}`);
+    console.log("added admin");
   };
+  const handleBanClick = () => {
+    axios.patch(`/users/ban/${player._id}`);
+    console.log("added");
+  };
+  console.log(MeInfo);
+
   return (
-    <div
-      onClick={() => handlePlayerClick(player._id)}
-      style={{ cursor: "pointer" }}
-    >
+    <div style={{ cursor: "pointer", display: "flex" }}>
       <div className="findplayer_wrapper">
         <div className="player_list">
           <div className="player_list_nicknames">
@@ -69,15 +71,37 @@ export const FoundPlayers = (player) => {
           </div>
         </div>
       </div>
-      <hr
-        style={{
-          width: 400,
-          float: "left",
-          margin: 0,
-          backgroundColor: "black",
-          borderColor: "black",
-        }}
-      />
+
+      {MeInfo.data.user.role == "Admin" ? (
+        <div className="Admin_buttons">
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "#00C90D",
+              height: 20,
+              marginTop: 3,
+              marginLeft: 10,
+            }}
+            onClick={handleAddAdminClick}
+          >
+            <Typography style={{ fontSize: 12 }}>Add admin</Typography>
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "red",
+              height: 20,
+              marginTop: 3,
+              marginLeft: 10,
+            }}
+            onClick={handleBanClick}
+          >
+            <Typography style={{ fontSize: 12 }}>BAN</Typography>
+          </Button>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

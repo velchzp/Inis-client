@@ -1,17 +1,19 @@
-.player_list {
+.friend_list {
   display: flex;
   flex-direction: row;
-  width: 400px;
+  width: 270px;
   margin-top: 30px;
   margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
 }
-.player_list_buttons {
+.friend_list_buttons {
   display: flex;
   flex-direction: row;
-  width: 300px;
+  width: 200px;
 }
-.player_list_nicknames {
+.friend_list_nicknames {
   display: flex;
   flex-direction: row;
-  width: 100px;
+  width: 70px;
 }

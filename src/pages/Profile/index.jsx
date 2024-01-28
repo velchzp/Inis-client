@@ -6,12 +6,13 @@ import Person2Icon from "@mui/icons-material/Person2";
 import { Overview } from "../../components/Overview";
 import { AccountSettings } from "../../components/AccountSettings";
 import { FriendList } from "../../components/Friend_list";
+import { History } from "../../components/History";
 
 export const Profile = () => {
   const MeInfo = useSelector((state) => state.auth);
   const FindPlayer = useSelector((state) => state.findplayer);
   const [activeComponent, setActiveComponent] = useState("Overview");
-  console.log(MeInfo?.data?.user);
+  console.log(MeInfo);
   console.log("FindPlayer", FindPlayer);
   const handleItemClick = (componentName) => {
     setActiveComponent(componentName);
@@ -23,8 +24,8 @@ export const Profile = () => {
         return <Overview />;
       case "Friends":
         return <FriendList />;
-      //   case "History":
-      //     return <HistoryComponent />;
+      case "History":
+        return <History />;
       case "AccountSettings":
         return <AccountSettings />;
       default:
@@ -78,7 +79,11 @@ export const Profile = () => {
                 </Typography>
               </ListItemText>
             </ListItemButton>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton
+              component="a"
+              href="#simple-list"
+              onClick={() => handleItemClick("History")}
+            >
               <ListItemText>
                 <Typography className="menu_item" variant="subtitle1">
                   History

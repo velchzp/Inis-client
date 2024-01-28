@@ -10,7 +10,11 @@ import { Navigate } from "react-router-dom";
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       email: "",
       password: "",
@@ -56,17 +60,24 @@ export const Registration = () => {
           </Typography>
           <Typography>Username</Typography>
           <TextField
-            {...register("userName")}
+            {...register("userName", { required: true, minLength: 3 })}
             variant="outlined"
             size="small"
             className="log_field"
             sx={{
               "& fieldset": { border: "none" },
             }}
+            helperText={
+              errors.userName && "Username must be at least 3 characters"
+            }
+            error={Boolean(errors.userName)}
           ></TextField>
           <Typography className="log_text">Email</Typography>
           <TextField
-            {...register("email")}
+            {...register("email", {
+              required: true,
+              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            })}
             variant="outlined"
             size="small"
             className="log_field"
@@ -77,7 +88,7 @@ export const Registration = () => {
           ></TextField>
           <Typography className="log_text">Password</Typography>
           <TextField
-            {...register("password")}
+            {...register("password", { required: true, minLength: 7 })}
             variant="outlined"
             size="small"
             className="log_field"
@@ -85,6 +96,10 @@ export const Registration = () => {
             sx={{
               "& fieldset": { border: "none" },
             }}
+            helperText={
+              errors.password && "Password must be at least 7 characters"
+            }
+            error={Boolean(errors.password)}
           ></TextField>
           <br />
           <Button

@@ -13,7 +13,6 @@ export const LobbyList = () => {
   useEffect(() => {
     socket.on("lobby-list", (lobbylist) => {
       setLobbyList(lobbylist);
-      console.log(lobbylist);
     });
     socket.emit("request-lobby-list");
   }, []);
